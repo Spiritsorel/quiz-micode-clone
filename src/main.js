@@ -67,13 +67,31 @@ const startButton = document.querySelector("#start");
 //   }
 // });
 
-startButton.addEventListener("click", startQuiz);
+startButton.addEventListener("click", displayCategoryMenu);
+
+function displayCategoryMenu() {
+  startButton.remove(); // Retire le bouton Start
+
+  const categories = [...new Set(Questions.map((q) => q.category))];
+
+  const title = document.createElement("h2");
+  title.innerText = "Choisis une catégorie :";
+  app.appendChild(title);
+
+  categories.forEach((category) => {
+    const button = document.createElement("button");
+    button.innerText = category;
+    button.addEventListener("click", () => startQuiz(category));
+    app.appendChild(button);
+  });
+}
 
 // Methode d'affichage des questions
-function startQuiz(event) {
-  event.stopPropagation();
+function startQuiz(category) {
   let currentQuestion = 0;
   let score = 0;
+
+  const questionsByCategory = Questions.filter((q) => q.category === category);
 
   displayQuestion(currentQuestion);
 
@@ -81,13 +99,16 @@ function startQuiz(event) {
     while (app.firstElementChild) {
       app.firstElementChild.remove();
     }
-    const progress = getProgressBar(Questions.length, currentQuestion);
+    const progress = getProgressBar(
+      questionsByCategory.length,
+      currentQuestion
+    );
     app.appendChild(progress);
   }
 
   function displayQuestion(index) {
     clean();
-    const question = Questions[index];
+    const question = questionsByCategory[index];
 
     if (!question) {
       displayFinishMessage();
@@ -110,10 +131,18 @@ function startQuiz(event) {
     const h1 = document.createElement("h1");
     h1.innerText = "Bravo ! Tu as termine le quiz.";
     const p = document.createElement("p");
-    p.innerText = `Tu as eu ${score} sur ${Questions.length} point !`;
+    p.innerText = `Tu as eu ${score} sur ${questionsByCategory.length} point !`;
+
+    const retryButton = document.createElement("button");
+    retryButton.innerText = "Rejouer";
+    retryButton.addEventListener("click", () => {
+      while (app.firstChild) app.firstChild.remove();
+      displayCategoryMenu(); // Reviens à la sélection de catégorie
+    });
 
     app.appendChild(h1);
     app.appendChild(p);
+    app.appendChild(retryButton);
   }
 
   // Gerer la submit Action
@@ -124,7 +153,7 @@ function startQuiz(event) {
 
     const value = selectedAnswer.value;
 
-    const question = Questions[currentQuestion];
+    const question = questionsByCategory[currentQuestion];
 
     const isCorrect = question.correct === value;
 
