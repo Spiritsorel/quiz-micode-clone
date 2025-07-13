@@ -88,6 +88,8 @@ function displayCategoryMenu() {
 
 // Methode d'affichage des questions
 function startQuiz(category) {
+  let timerInterval;
+  let timeLeft = 10;
   let currentQuestion = 0;
   let score = 0;
 
@@ -125,7 +127,38 @@ function startQuiz(category) {
     submitButton.addEventListener("click", submit);
 
     app.appendChild(submitButton);
+    startTimer();
   }
+
+  function startTimer() {
+    timeLeft = 10;
+
+    const timerDisplay = document.createElement("p");
+    timerDisplay.id = "timer";
+    timerDisplay.innerText = `Temps restant : ${timeLeft}s`;
+    app.appendChild(timerDisplay);
+
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      timerDisplay.innerText = `Temps restant : ${timeLeft}s`;
+
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        autoSubmit(); // Forcer la validation automatique
+      }
+    }, 1000);
+  }
+
+  function autoSubmit() {
+    const selectedAnswer = app.querySelector('input[name="answer"]:checked');
+    if (!selectedAnswer) {
+      // Si aucune réponse choisie, passe à la question suivante
+      displayNextQuestionButton();
+      return;
+    }
+    submit(); // Sinon, on valide normalement
+  }
+
   //Methode d'affichage de message a la fin de la partie
   function displayFinishMessage() {
     const h1 = document.createElement("h1");
@@ -147,6 +180,7 @@ function startQuiz(category) {
 
   // Gerer la submit Action
   function submit() {
+    clearInterval(timerInterval);
     const selectedAnswer = app.querySelector('input[name="answer"]:checked');
 
     disableAllAnswers();
