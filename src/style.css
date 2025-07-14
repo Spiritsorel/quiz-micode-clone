@@ -229,100 +229,69 @@ progress {
   }
 }
 
-/* @media (max-width: 360px) {
-  #app {
-    padding: 8px;
-    gap: 6px;
-  }
-
-  label {
-    font-size: 14px;
-    padding: 6px;
-    margin: 2px;
-    flex-direction: column;
-    align-items: flex-start;
-    word-break: break-word;
-  }
-
-  button {
-    font-size: 12px;
-    padding: 8px 10px;
-    min-height: auto;
-  }
-
-  h2,
-  h3 {
-    font-size: 16px;
-    text-align: center;
-  }
-
-  .big-title {
-    font-size: 24px;
-    text-align: center;
-  }
-
-  #timer {
-    font-size: 14px;
-  }
-
-  .progress-container {
-    height: 10px;
-  }
-} */
-
-@media (max-width: 350px) {
+@media (max-width: 360px) {
   body {
-    padding: 0 10px; /* Ajoute de l'espace autour de #app */
+    padding: 0 8px; /* Moins d'espace autour, mais toujours un peu */
   }
 
   #app {
     width: 100%;
-    max-width: 280px;
-    margin: 0 auto;
-    padding: 12px;
-    gap: 8px;
+    max-width: 260px; /* Réduction maximale */
+    padding: 10px;
+    gap: 6px;
   }
 
   h1 {
-    font-size: 24px;
+    font-size: 22px;
     text-align: center;
+    line-height: 1.2;
     word-break: break-word;
   }
 
   .Js,
   .js {
-    font-size: 24px;
-    padding: 2px 6px;
-    background: yellow;
-    margin: 0 2px;
+    font-size: 20px;
+    padding: 2px 4px;
+    margin: 0 1px;
   }
 
   button {
     width: 100%;
-    font-size: 14px;
-    padding: 10px;
-    min-height: 36px;
-  }
-
-  label {
-    font-size: 14px;
+    font-size: 13px;
     padding: 8px;
-    flex-direction: column;
-    align-items: flex-start;
+    min-height: 32px;
   }
 
   h2,
   h3 {
-    font-size: 18px;
+    font-size: 17px;
     text-align: center;
+  }
+
+  label {
+    font-size: 14px;
+    padding: 6px;
+    margin: 3px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
 
   #timer {
-    font-size: 16px;
+    font-size: 15px;
     text-align: center;
   }
 
-  .progress-container {
+  progress {
     height: 8px;
+  }
+
+  .progress-container {
+    height: 6px;
+  }
+
+  p {
+    font-size: 14px;
+    text-align: center;
   }
 }
