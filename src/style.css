@@ -189,8 +189,9 @@ progress {
 
 @media (max-width: 480px) {
   #app {
-    padding: 16px;
-    gap: 8px;
+    width: 100%;
+    padding: 16px 12px;
+    gap: 10px;
   }
 
   button {
@@ -225,5 +226,46 @@ progress {
 
   .progress-container {
     height: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  #app {
+    padding: 8px;
+    gap: 6px;
+  }
+
+  label {
+    font-size: 14px;
+    padding: 6px;
+    margin: 2px;
+    flex-direction: column;
+    align-items: flex-start;
+    word-break: break-word;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 8px 10px;
+    min-height: auto;
+  }
+
+  h2,
+  h3 {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .big-title {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  #timer {
+    font-size: 14px;
+  }
+
+  .progress-container {
+    height: 10px;
   }
 }
