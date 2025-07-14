@@ -227,7 +227,11 @@ function startQuiz(category) {
     showFeedback(isCorrect, question.correct, value);
     displayNextQuestionButton();
 
-    const feedback = getFeedbackMessage(isCorrect, question.correct);
+    const feedback = getFeedbackMessage(
+      isCorrect,
+      question.correct,
+      question.explanation
+    );
     app.appendChild(feedback);
   }
 
@@ -335,7 +339,15 @@ function getFeedbackMessage(isCorrect, correct) {
     ? "Bravo ! Tu as eu la bonne reponse"
     : `Desole... mais la bonne reponse etait ${correct}`;
 
-  return paragraph;
+  const explanationParagraph = document.createElement("p");
+  explanationParagraph.innerText = explanation;
+  explanationParagraph.classList.add("explanation");
+
+  const container = document.createElement("div");
+  container.appendChild(paragraph);
+  container.appendChild(explanationParagraph);
+
+  return container;
 }
 
 function getProgressBar(max, value) {
