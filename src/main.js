@@ -67,10 +67,10 @@ const startButton = document.querySelector("#start");
 //   }
 // });
 
-const correctSound = new Audio("/sounds/correct.wav");
+const correctSound = new Audio("/sounds/correct.mp3");
 correctSound.volume = 1;
 
-const wrongSound = new Audio("/sounds/wrong.wav");
+const wrongSound = new Audio("/sounds/wrong.mp3");
 wrongSound.volume = 1;
 
 startButton.addEventListener("click", () => {
