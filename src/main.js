@@ -67,8 +67,8 @@ const startButton = document.querySelector("#start");
 //   }
 // });
 
-const correctSound = new Audio("/sounds/correct.mp3");
-const wrongSound = new Audio("/sounds/wrong.mp3");
+const correctSound = new Audio("/sounds/correct.wav");
+const wrongSound = new Audio("/sounds/wrong.wav");
 
 startButton.addEventListener("click", displayCategoryMenu);
 
