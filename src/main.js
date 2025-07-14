@@ -73,7 +73,18 @@ correctSound.volume = 1;
 const wrongSound = new Audio("/sounds/wrong.wav");
 wrongSound.volume = 1;
 
-startButton.addEventListener("click", displayCategoryMenu);
+startButton.addEventListener("click", () => {
+  // Débloquer l'audio à la première interaction
+  correctSound.play().catch(() => {});
+  correctSound.pause();
+  correctSound.currentTime = 0;
+
+  wrongSound.play().catch(() => {});
+  wrongSound.pause();
+  wrongSound.currentTime = 0;
+
+  displayCategoryMenu();
+});
 
 function displayCategoryMenu() {
   startButton.remove(); // Retire le bouton Start
@@ -203,10 +214,14 @@ function startQuiz(category) {
 
     if (isCorrect) {
       correctSound.currentTime = 0;
-      correctSound.play();
+      correctSound.play().catch((err) => {
+        console.warn("Erreur de lecture du son correct :", err);
+      });
     } else {
       wrongSound.currentTime = 0;
-      wrongSound.play();
+      wrongSound.play().catch((err) => {
+        console.warn("Erreur de lecture du son incorrect :", err);
+      });
     }
 
     showFeedback(isCorrect, question.correct, value);
