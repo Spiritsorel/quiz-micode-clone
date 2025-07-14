@@ -68,7 +68,10 @@ const startButton = document.querySelector("#start");
 // });
 
 const correctSound = new Audio("/sounds/correct.wav");
+correctSound.volume = 1;
+
 const wrongSound = new Audio("/sounds/wrong.wav");
+wrongSound.volume = 1;
 
 startButton.addEventListener("click", displayCategoryMenu);
 
@@ -199,8 +202,10 @@ function startQuiz(category) {
     }
 
     if (isCorrect) {
+      correctSound.currentTime = 0;
       correctSound.play();
     } else {
+      wrongSound.currentTime = 0;
       wrongSound.play();
     }
 
