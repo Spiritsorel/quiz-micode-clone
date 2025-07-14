@@ -339,10 +339,20 @@ function getFeedbackMessage(isCorrect, correct) {
 }
 
 function getProgressBar(max, value) {
-  const progress = document.createElement("progress");
-  progress.setAttribute("max", max);
-  progress.setAttribute("value", value);
-  return progress;
+  const container = document.createElement("div");
+  container.classList.add("progress-container");
+
+  const bar = document.createElement("div");
+  bar.classList.add("progress-bar");
+
+  const percentage = (value / max) * 100;
+  // Pour lancer l'animation, on met la largeur à 0 puis on change après un court délai
+  setTimeout(() => {
+    bar.style.width = `${percentage}%`;
+  }, 50);
+
+  container.appendChild(bar);
+  return container;
 }
 
 function disableAllAnswers() {
