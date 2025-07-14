@@ -67,6 +67,9 @@ const startButton = document.querySelector("#start");
 //   }
 // });
 
+const correctSound = new Audio("/sounds/correct.mp3");
+const wrongSound = new Audio("/sounds/wrong.mp3");
+
 startButton.addEventListener("click", displayCategoryMenu);
 
 function displayCategoryMenu() {
@@ -193,6 +196,12 @@ function startQuiz(category) {
 
     if (isCorrect) {
       score++;
+    }
+
+    if (isCorrect) {
+      correctSound.play();
+    } else {
+      wrongSound.play();
     }
 
     showFeedback(isCorrect, question.correct, value);
