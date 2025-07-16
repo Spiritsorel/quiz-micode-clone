@@ -333,11 +333,11 @@ function showFeedback(isCorrect, correct, answer) {
   selectedElement.classList.add(isCorrect ? "correct" : "incorrect");
 }
 
-function getFeedbackMessage(isCorrect, correct) {
+function getFeedbackMessage(isCorrect, correct, explanation) {
   const paragraph = document.createElement("p");
   paragraph.innerText = isCorrect
-    ? "Bravo ! Tu as eu la bonne reponse"
-    : `Desole... mais la bonne reponse etait ${correct}`;
+    ? "Bravo ! Tu as eu la bonne réponse"
+    : `Désolé... mais la bonne réponse était : ${correct}`;
 
   const explanationParagraph = document.createElement("p");
   explanationParagraph.innerText = explanation;
